@@ -6,11 +6,11 @@ const searchMeal = async() => {
         const res = await fetch(url);
         const data = await res.json();
         if (searchText.indexOf(' ') >= 0) {
-            displayError(" Your searched food is not available in our cart.");
+            displayError("Please write a name of Meal. Not Space !!!");
             document.getElementById("mealsContainer").innerHTML = ``;
             document.getElementById("displayIngredients").innerHTML = ``;
         } else if (searchText.length == 0) {
-            displayError(" Your  food is not available in our cart.");
+            displayError("You don't write anything. Please enter a name of Meal, Which you want.");
             document.getElementById("mealsContainer").innerHTML = ``;
             document.getElementById("displayIngredients").innerHTML = ``;
         } else {
@@ -20,7 +20,7 @@ const searchMeal = async() => {
             document.getElementById("displayIngredients").innerHTML = ``;
         }
     } catch (error) {
-        displayError(" Your searched food is not available in our cart.");
+        displayError("Your searched food is not available in our cart. Please Try Again !!!");
     }
 
 
