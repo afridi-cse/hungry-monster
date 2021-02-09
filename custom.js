@@ -1,21 +1,29 @@
 const searchMeal = async() => {
     const searchText = document.getElementById('searchInput').value;
-    if (searchText.indexOf(' ') >= 0) {
-        displayError(" Your searched food is not available in our cart.");
-    } else if (searchText.length == 0) {
-        displayError(" Your  food is not available in our cart.");
-    } else {
-        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
-        try {
-            const res = await fetch(url);
-            const data = await res.json();
+
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (searchText.indexOf(' ') >= 0) {
+            displayError(" Your searched food is not available in our cart.");
+            document.getElementById("mealsContainer").innerHTML = ``;
+            document.getElementById("displayIngredients").innerHTML = ``;
+        } else if (searchText.length == 0) {
+            displayError(" Your  food is not available in our cart.");
+            document.getElementById("mealsContainer").innerHTML = ``;
+            document.getElementById("displayIngredients").innerHTML = ``;
+        } else {
+
             displayMeals(data.meals);
             displayError("");
-        } catch (error) {
-            displayError(" Your searched food is not available in our cart.");
+            document.getElementById("displayIngredients").innerHTML = ``;
         }
-
+    } catch (error) {
+        displayError(" Your searched food is not available in our cart.");
     }
+
+
 
 
 }
