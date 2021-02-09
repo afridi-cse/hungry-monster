@@ -4,12 +4,12 @@ const searchMeal = async() => {
     try {
         const res = await fetch(url);
         const data = await res.json();
-        if (searchText.indexOf(' ') >= 0) {
-            displayError("Please write a name of Meal. Not Space !!!");
+        if (searchText.length == 0) {
+            displayError("You don't write anything. Please enter a name of Meal, Which you want.");
             document.getElementById("mealsContainer").innerHTML = ``;
             document.getElementById("displayIngredients").innerHTML = ``;
-        } else if (searchText.length == 0) {
-            displayError("You don't write anything. Please enter a name of Meal, Which you want.");
+        } else if (!searchText.trim().length) {
+            displayError("Please write a name of Meal. Not Space !!!");
             document.getElementById("mealsContainer").innerHTML = ``;
             document.getElementById("displayIngredients").innerHTML = ``;
         } else {
