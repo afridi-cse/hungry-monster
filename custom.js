@@ -1,6 +1,5 @@
 const searchMeal = async() => {
     const searchText = document.getElementById('searchInput').value;
-
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
     try {
         const res = await fetch(url);
@@ -14,7 +13,6 @@ const searchMeal = async() => {
             document.getElementById("mealsContainer").innerHTML = ``;
             document.getElementById("displayIngredients").innerHTML = ``;
         } else {
-
             displayMeals(data.meals);
             displayError("");
             document.getElementById("displayIngredients").innerHTML = ``;
@@ -22,11 +20,8 @@ const searchMeal = async() => {
     } catch (error) {
         displayError("Your searched food is not available in our cart. Please Try Again !!!");
     }
-
-
-
-
 }
+
 const displayMeals = (meals) => {
     const mealsContainer = document.getElementById("mealsContainer");
     mealsContainer.innerHTML = '';
@@ -42,7 +37,6 @@ const displayMeals = (meals) => {
           </div>
         `;
         mealsContainer.appendChild(mealDiv);
-
     });
 }
 const displayIngredients = async(id) => {
@@ -92,5 +86,5 @@ const displayError = (error) => {
     errorText.innerHTML = `
     <h1>${error}</h1>
 
-   `
+   `;
 }
