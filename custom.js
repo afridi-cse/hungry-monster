@@ -1,0 +1,56 @@
+const searchMeal = () => {
+    const searchText = document.getElementById('searchInput').value;
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayMeals(data.meals))
+}
+const displayMeals = (meals) => {
+    const mealsContainer = document.getElementById("mealsContainer");
+    meals.forEach(meal => {
+        const mealDiv = document.createElement('div');
+        mealDiv.className = 'mealDiv col';
+        mealDiv.innerHTML = `      
+          <div onclick="displayIngredients('${meal.idMeal}')" class="card h-100">
+            <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${meal.strMeal}</h5>
+              </div>           
+          </div>
+        `;
+        mealsContainer.appendChild(mealDiv);
+
+    });
+}
+const displayIngredients = (id) => {
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => ingredientsInfo(data.meals[0]));
+}
+
+const ingredientsInfo = meals => {
+    const ingredientsDiv = document.getElementById("displayIngredients");
+    ingredientsDiv.innerHTML = `
+    <div class="card bg-warning" style="width: 18rem;">
+    <img src="${meals.strMealThumb}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title fw-bold">${meals.strMeal}</h5>
+      <p class="card-text fw-bold">Ingredients</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${meals.strIngredient1}</li>
+      <li class="list-group-item">${meals.strIngredient2}</li>
+      <li class="list-group-item">${meals.strIngredient3}</li>
+      <li class="list-group-item">${meals.strIngredient4}</li>
+      <li class="list-group-item">${meals.strIngredient5}</li>
+      <li class="list-group-item">${meals.strIngredient6}</li>
+      <li class="list-group-item">${meals.strIngredient7}</li>
+      <li class="list-group-item">${meals.strIngredient8}</li>
+      <li class="list-group-item">${meals.strIngredient9}</li>
+      <li class="list-group-item">${meals.strIngredient10}</li>
+    </ul>
+  </div>   
+    `;
+
+
+}

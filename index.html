@@ -12,10 +12,20 @@
 </head>
 
 <body>
+    <div class="container d-flex justify-content-center">
+        <div id="displayIngredients" class="displayIngredients p-1">
 
+        </div>
+    </div>
+    <div class="container d-flex p-5 mt-5">
+        <input id="searchInput" class="form-control" type="text" placeholder="Search">
+        <button onclick="searchMeal()" id="searchBtn" class="btn btn-warning">Search</button>
+    </div>
+    <div class="container p-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="mealsContainer">
 
-
-    <h1>hello</h1>
+        </div>
+    </div>
 
 
     <script src="custom.js"></script>
