@@ -1,7 +1,9 @@
 const searchMeal = async() => {
     const searchText = document.getElementById('searchInput').value;
-    if (searchText === "") {
+    if (searchText.indexOf(' ') >= 0) {
         displayError(" Your searched food is not available in our cart.");
+    } else if (searchText.length == 0) {
+        displayError(" Your  food is not available in our cart.");
     } else {
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
         try {
